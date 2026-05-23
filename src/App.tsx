@@ -10,6 +10,7 @@ import CmsConsole from './components/CmsConsole';
 import SitePreview from './components/SitePreview';
 import ApiPlayground from './components/ApiPlayground';
 import IntegrationHelper from './components/IntegrationHelper';
+import DesignExplorer from './components/DesignExplorer';
 import { 
   Database, 
   Eye, 
@@ -19,13 +20,14 @@ import {
   RefreshCw, 
   Globe, 
   CheckCircle,
-  HelpCircle
+  HelpCircle,
+  Palette
 } from 'lucide-react';
 
 export default function App() {
   const [cmsDb, setCmsDb] = useState<CmsDatabase>(initialCmsDatabase);
   const [currentLocale, setCurrentLocale] = useState<string>("en");
-  const [activeTab, setActiveTab] = useState<"cms" | "preview" | "api" | "integration">("cms");
+  const [activeTab, setActiveTab] = useState<"cms" | "preview" | "api" | "integration" | "design">("cms");
 
   const handleResetDatabase = () => {
     if (window.confirm("Are you sure you want to reset all CMS content to original translation defaults? This removes current modifications.")) {
@@ -78,6 +80,19 @@ export default function App() {
             >
               <Eye className="w-3.5 h-3.5" />
               <span>Live Website Preview</span>
+            </button>
+
+            <button
+              id="tab-btn-design"
+              onClick={() => setActiveTab("design")}
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition ${
+                activeTab === "design" 
+                  ? 'bg-blue-600 text-white shadow-sm' 
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Palette className="w-3.5 h-3.5" />
+              <span>Design Options</span>
             </button>
 
             <button
@@ -143,6 +158,14 @@ export default function App() {
             
             <SitePreview cmsDb={cmsDb} currentLocale={currentLocale} />
           </div>
+        )}
+
+        {activeTab === "design" && (
+          <DesignExplorer 
+            cmsDb={cmsDb} 
+            setCmsDb={setCmsDb} 
+            currentLocale={currentLocale} 
+          />
         )}
 
         {activeTab === "api" && (

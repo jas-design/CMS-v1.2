@@ -58,6 +58,7 @@ export interface GlobalSettings {
   cookieBannerText: Localized<string>;
   defaultLocale: string;
   locales: string[]; // list of active language codes, e.g. ["en", "fr", "pt"]
+  customCss?: string; // custom styling to override website styles
   lastUpdatedAt: string;
 }
 

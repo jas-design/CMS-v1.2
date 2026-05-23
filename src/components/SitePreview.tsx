@@ -41,6 +41,22 @@ export default function SitePreview({ cmsDb, currentLocale }: SitePreviewProps) 
   const primaryHex = cmsDb.globalSettings.primaryColor;
   const secondaryHex = cmsDb.globalSettings.secondaryColor;
 
+  const fontHeadingStyle = {
+    fontFamily: 
+      cmsDb.globalSettings.fontHeading === "Space Grotesk" ? "'Space Grotesk', sans-serif" :
+      cmsDb.globalSettings.fontHeading === "Playfair Display" ? "'Playfair Display', serif" :
+      cmsDb.globalSettings.fontHeading === "SFMono-Regular" ? "'SFMono-Regular', monospace" :
+      cmsDb.globalSettings.fontHeading === "Inter" ? "'Inter', sans-serif" : "inherit"
+  };
+
+  const fontBodyStyle = {
+    fontFamily: 
+      cmsDb.globalSettings.fontBody === "Space Grotesk" ? "'Space Grotesk', sans-serif" :
+      cmsDb.globalSettings.fontBody === "Playfair Display" ? "'Playfair Display', serif" :
+      cmsDb.globalSettings.fontBody === "SFMono-Regular" ? "'SFMono-Regular', monospace" :
+      cmsDb.globalSettings.fontBody === "Inter" ? "'Inter', sans-serif" : "inherit"
+  };
+
   // Render a Lucide Icon dynamically from name string
   const DynamicIcon = ({ name, className }: { name: string; className?: string }) => {
     const IconComponent = (Icons as any)[name];
@@ -83,10 +99,13 @@ export default function SitePreview({ cmsDb, currentLocale }: SitePreviewProps) 
     <div 
       className="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-xl"
       id="custom-site-preview-root"
-      style={{
-        fontFamily: cmsDb.globalSettings.fontBody === "Space Grotesk" ? "Space Grotesk, sans-serif" : "Inter, sans-serif"
-      }}
+      style={fontBodyStyle}
     >
+      {/* Inject user-defined custom CSS overrides */}
+      {cmsDb.globalSettings.customCss && (
+        <style dangerouslySetInnerHTML={{ __html: cmsDb.globalSettings.customCss }} />
+      )}
+      
       {/* Route Simulator Bar */}
       <div className="bg-slate-900 border-b border-slate-800 px-4 py-2.5 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-2">
@@ -238,9 +257,7 @@ export default function SitePreview({ cmsDb, currentLocale }: SitePreviewProps) 
                         >
                           <h1 
                             className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-slate-50"
-                            style={{
-                              fontFamily: cmsDb.globalSettings.fontHeading === "Space Grotesk" ? "Space Grotesk, sans-serif" : "inherit"
-                            }}
+                            style={fontHeadingStyle}
                           >
                             {t(section.headline, "")}
                           </h1>
@@ -257,7 +274,7 @@ export default function SitePreview({ cmsDb, currentLocale }: SitePreviewProps) 
                                 }
                               }}
                               style={{ backgroundColor: secondaryHex }}
-                              className="px-5 py-2.5 rounded-lg text-xs font-bold text-white shadow-lg hover:brightness-110 transition cursor-pointer"
+                              className="preview-btn-primary px-5 py-2.5 rounded-lg text-xs font-bold text-white shadow-lg hover:brightness-110 transition cursor-pointer"
                             >
                               {t(section.ctaPrimary?.label, "Explore")}
                             </button>
@@ -268,7 +285,7 @@ export default function SitePreview({ cmsDb, currentLocale }: SitePreviewProps) 
                                     setCurrentRoute(section.ctaSecondary.href);
                                   }
                                 }}
-                                className="px-5 py-2.5 rounded-lg text-xs font-bold bg-slate-850/80 hover:bg-slate-800 text-slate-100 border border-slate-700 transition"
+                                className="preview-btn-secondary px-5 py-2.5 rounded-lg text-xs font-bold bg-slate-850/80 hover:bg-slate-800 text-slate-100 border border-slate-700 transition"
                               >
                                 {t(section.ctaSecondary.label, "Contact")}
                               </button>
@@ -290,7 +307,7 @@ export default function SitePreview({ cmsDb, currentLocale }: SitePreviewProps) 
 
                         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
                           {section.items?.map((feat, i) => (
-                            <div key={i} className="p-5 rounded-xl bg-slate-900 border border-slate-850 space-y-3">
+                            <div key={i} className="preview-custom-card-hover p-5 rounded-xl bg-slate-900 border border-slate-850 space-y-3 transition-all duration-300">
                               <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center border border-blue-500/30">
                                 <DynamicIcon name={feat.icon} className="w-4 h-4 text-blue-400" />
                               </div>
@@ -317,7 +334,7 @@ export default function SitePreview({ cmsDb, currentLocale }: SitePreviewProps) 
 
                         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
                           {itemsToShow.map(prod => (
-                            <div key={prod.id} className="p-5 rounded-xl bg-slate-950 border border-slate-850 flex flex-col sm:flex-row gap-4 items-start justify-between">
+                            <div key={prod.id} className="preview-custom-card-hover p-5 rounded-xl bg-slate-950 border border-slate-850 flex flex-col sm:flex-row gap-4 items-start justify-between transition-all duration-300">
                               <img 
                                 src={prod.images[0]?.url || "https://images.unsplash.com/photo-1546074177-3a9617ad34c5?auto=format&fit=crop&w=150&q=80"} 
                                 alt={prod.images[0]?.alt || "Product thumbnail"} 

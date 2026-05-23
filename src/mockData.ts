@@ -39,6 +39,7 @@ export const initialCmsDatabase: CmsDatabase = {
     },
     defaultLocale: "en",
     locales: ["en", "fr", "pt"],
+    customCss: `/* Custom CSS Override - Target elements inside the Preview website! */\n/* Example below: uncomment to try */\n\n/*\n.preview-hero-badge {\n  animation: pulse 2s infinite;\n  box-shadow: 0 0 15px currentColor;\n}\n\n.preview-btn-primary {\n  border-radius: 9999px !important;\n  text-transform: uppercase;\n  letter-spacing: 0.1em;\n}\n\n.preview-custom-card-hover:hover {\n  transform: translateY(-4px) scale(1.02);\n  border-color: #58A6FF !important;\n}\n*/`,
     lastUpdatedAt: nowISO
   },
   navigation: {
