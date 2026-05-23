@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-slate-950: #0D1117;
+  --color-slate-920: #161B22;
+  --color-slate-900: #161B22;
+  --color-slate-850: rgb(26, 31, 39);
+  --color-slate-800: #30363D;
+  --color-slate-700: #484f58;
+  --color-slate-650: #586069;
+  --color-slate-500: #8B949E;
+  --color-slate-450: #8B949E;
+  --color-slate-400: #8B949E;
+  --color-slate-350: #C9D1D9;
+  --color-slate-300: #C9D1D9;
+  --color-slate-200: #E6EDF3;
+  --color-slate-100: #F0F6FC;
+  
+  --color-blue-600: #58A6FF;
+  --color-blue-500: #58A6FF;
+  --color-blue-400: #58A6FF;
+  
+  --color-emerald-950: #112F1B;
+  --color-emerald-900: #238636;
+  --color-emerald-450: #3FB950;
+  --color-emerald-400: #3FB950;
+  
+  --color-indigo-950: #1f1b3d;
+  --color-indigo-900: #38235C;
+  --color-indigo-400: #D2A8FF;
+
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+/* Custom Scrollbars */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(1, 4, 9, 0.4);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(88, 166, 255, 0.2);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(88, 166, 255, 0.4);
+}
+
+/* Code Highlighting customized to match Elegant Dark */
+pre code {
+  color: #C9D1D9;
+  background-color: #010409 !important;
+}
+
+.code-keyword {
+  color: #FF7B72 !important;
+}
+
+.code-string {
+  color: #A5D6FF !important;
+}
+
+.code-func {
+  color: #D2A8FF !important;
+}
+
+/* Custom badges */
+.badge-localized {
+  background-color: #38235C !important;
+  color: #D2A8FF !important;
+  border: 1px solid #7846C4 !important;
+}
+
+.badge-published {
+  background-color: #112F1B !important;
+  color: #3FB950 !important;
+  border: 1px solid #238636 !important;
+}
+

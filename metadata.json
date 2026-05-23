@@ -1,0 +1,6 @@
+{
+  "name": "Headless CMS Integration Suite",
+  "description": "An interactive, feature-complete Headless CMS content editor, schema validator, client-side REST playground, and real-time multilingual website preview.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
